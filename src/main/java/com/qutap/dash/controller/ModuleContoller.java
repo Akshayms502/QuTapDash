@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qutap.dash.CommonUtils.Response;
-import com.qutap.dash.CommonUtils.StatusCode;
-import com.qutap.dash.CommonUtils.Utils;
+import com.qutap.dash.commonUtils.Response;
+import com.qutap.dash.commonUtils.StatusCode;
+import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.model.ModuleModel;
 import com.qutap.dash.service.ModuleService;
 
