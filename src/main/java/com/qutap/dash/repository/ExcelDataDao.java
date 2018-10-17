@@ -2,6 +2,8 @@ package com.qutap.dash.repository;
 
 
 
+import java.util.List;
+
 import com.qutap.dash.commonUtils.*;
 import com.qutap.dash.domain.ProjectInfoDomain;
 import com.qutap.dash.domain.RequirementDomain;
@@ -20,6 +22,10 @@ public interface ExcelDataDao {
 	Response saveTestStepData(TestStepDomain testStepDomainData);
 
 	Response saveTestcaseData(TestCaseDomain testCaseDomainData);
+
+	TestCaseDomain getTestCaseData(String testCaseId);
+
+	List<TestStepDomain> getTestStepList(String testCaseId);
 
 	
 	

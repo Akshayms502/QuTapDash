@@ -55,10 +55,9 @@ public class ProjectInfoDaoImpl implements ProjectInfoDao{
 		
 	}
 	
+	@Override
 	public ProjectInfoDomain getProjectInfo(String projectId) {
-		try {
-			
-		
+		try {	
 		return mongoTemplate.findById(projectId, ProjectInfoDomain.class);
 		}
 		catch (Exception e) {
@@ -66,20 +65,21 @@ public class ProjectInfoDaoImpl implements ProjectInfoDao{
 			return null;
 		}
 	}
+	
 	@Override
 	public ProjectInfoDomain getProjectInfobyName(String projectName) {
 		try {
 			Query query=new Query();
-			query.addCriteria(Criteria.where("projectName").is(projectName));
-			
-		return mongoTemplate.findOne(query, ProjectInfoDomain.class, "projectInfo");
-				
+			query.addCriteria(Criteria.where("projectName").is(projectName));			
+			return mongoTemplate.findOne(query, ProjectInfoDomain.class, "projectInfo");				
 		}
 		catch (Exception e) {
 			log.info(e.getMessage());
 			return null;
 		}
 	}
+	
+	@Override
 	public List<ProjectInfoDomain> getProjectListInfo() {
 		try {
 		return mongoTemplate.findAll(ProjectInfoDomain.class, "projectInfo");

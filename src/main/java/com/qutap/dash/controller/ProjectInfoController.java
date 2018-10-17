@@ -1,5 +1,6 @@
 package com.qutap.dash.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qutap.dash.commonUtils.*;
@@ -35,89 +37,85 @@ public class ProjectInfoController {
 		log.info("url of the application"+req.getRequestURL().toString());
 		Response response=projectInfoService.saveProjectInfo(projectInfoModel);
 		response.setUrl(req.getRequestURL().toString());
-		return response;
-		
+		return response;		
 	}
+
 	
 	@GetMapping("/projectDataById/{projectId}")
-	public   Object getProjectInfo(@PathVariable String projectId,HttpServletRequest req) {
+	public   @ResponseBody String getProjectInfo(@PathVariable String projectId,HttpServletRequest req) throws IOException {
 		Response response=Utils.getResponseObject("getting project details data");
 		try {
-			
-			
-		
-		ProjectInfoModel projectInfoModel=projectInfoService.getProjectInfo(projectId);
-		if(projectInfoModel==null) {
-			response.setStatus(StatusCode.FAILURE.name());
-		}else {
-			response.setStatus(StatusCode.SUCCESS.name());
-			response.setUrl(req.getRequestURL().toString());
-			response.setData(projectInfoModel);
-			return   Utils.getJson(response);	
-		}
-		}catch(Exception e) {
-			
+			ProjectInfoModel projectInfoModel=projectInfoService.getProjectInfo(projectId);	
+			if(projectInfoModel==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("ProjectInfoData", "null projectInfoModel data");
+				response.setErrors(errorObject);
+				response.setStatus(StatusCode.FAILURE.name());
+			}else {			
+				response.setStatus(StatusCode.SUCCESS.name());
+				response.setUrl(req.getRequestURL().toString());
+				response.setData(projectInfoModel);
+			}
+		}catch(Exception e) {		
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
 			log.info(e.getMessage());
 		}
-		return null;
-		
+		return (String) Utils.getJson(response);		
 	}
+	
+	
 	@GetMapping("/projectDataByName/{projectName}")
-	public   Object getProjectInfobyName(@PathVariable String projectName,HttpServletRequest req) {
+	public   @ResponseBody String getProjectInfobyName(@PathVariable String projectName,HttpServletRequest req) throws IOException {
 		Response response=Utils.getResponseObject("getting project details data");
-		try {
-		 
-			
-		ProjectInfoModel projectInfoModel=projectInfoService.getProjectInfobyName(projectName);
-		if(projectInfoModel==null) {
-			response.setStatus(StatusCode.FAILURE.name());
-		}else {
-			response.setStatus(StatusCode.SUCCESS.name());
-			response.setUrl(req.getRequestURL().toString());
-			response.setData(projectInfoModel);
-			return   Utils.getJson(response);	
-		}
-		}catch(Exception e) {
-			
+		try {		
+			ProjectInfoModel projectInfoModel=projectInfoService.getProjectInfobyName(projectName);
+			if(projectInfoModel==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("ProjectInfoData", "null projectInfoModel data");
+				response.setErrors(errorObject);
+				response.setStatus(StatusCode.FAILURE.name());
+			}else {
+				response.setStatus(StatusCode.SUCCESS.name());
+				response.setUrl(req.getRequestURL().toString());
+				response.setData(projectInfoModel);
+			}
+		}catch(Exception e) {			
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
 			log.info(e.getMessage());
 		}
-		return null;
-		
+		return (String) Utils.getJson(response);		
 	}
+	
+	
 	@GetMapping("/listOfprojects")
-	public  Object getProjectListInfo(HttpServletRequest req) {
+	public  @ResponseBody String getProjectListInfo(HttpServletRequest req) throws IOException {
 		Response response=Utils.getResponseObject("getting project details data");
-		try {
-		
-		List<ProjectInfoModel> projectInfoModel=projectInfoService.getProjectListInfo();
-		if(projectInfoModel==null) {
-			response.setStatus(StatusCode.FAILURE.name());
-		}else {
-			response.setStatus(StatusCode.SUCCESS.name());
-			response.setUrl(req.getRequestURL().toString());
-			response.setData(projectInfoModel);
-			return   Utils.getJson(response);	
-		}
-		}catch(Exception e) {
-			
+		try {		
+			List<ProjectInfoModel> projectInfoModel=projectInfoService.getProjectListInfo();
+			if(projectInfoModel==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("ProjectInfoData", "null projectInfoModel data");
+				response.setErrors(errorObject);
+				response.setStatus(StatusCode.FAILURE.name());
+			}else {
+				response.setStatus(StatusCode.SUCCESS.name());
+				response.setUrl(req.getRequestURL().toString());
+				response.setData(projectInfoModel);
+			}
+		}catch(Exception e) {		
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
 			log.info(e.getMessage());
 		}
-		return null;
+		return (String) Utils.getJson(response);
 	}
+
 	
 	@PutMapping("/updateProject")
 	public Response updateProjectInfo(@RequestBody ProjectInfoModel projectInfoModel,HttpServletRequest req) { 
 		log.info("url of the application"+req.getRequestURL().toString());
 		Response response=projectInfoService.updateProjectInfo(projectInfoModel);
 		response.setUrl(req.getRequestURL().toString());
-		return response;
-		
+		return response;	
 	}
 	
 	@DeleteMapping("/deleteProject/{projectId}")
@@ -125,7 +123,6 @@ public class ProjectInfoController {
 		log.info("url of the application"+req.getRequestURL().toString());
 		Response response=projectInfoService.deleteProjectInfo(projectId);
 		response.setUrl(req.getRequestURL().toString());
-		return response;
-		
+		return response;	
 	}
 }

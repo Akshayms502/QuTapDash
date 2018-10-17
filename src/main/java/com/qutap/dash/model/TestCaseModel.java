@@ -1,41 +1,36 @@
 package com.qutap.dash.model;
 
-public class TestCaseModel {
-	private String testCaseID;
-	private String requirementId;
-	private String testScenarioId;
-	private String testCaseDescription;
+import java.io.Serializable;
+
+public class TestCaseModel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6503807222820347515L;
+	private String testCaseId;
+	private String testCaseName;
+	private String testCaseDesciption;
 	private String testCaseCategory;
 	private String testCasePriority;
 	private String testCaseTag;
-	private String testcaseKeyword;
-	private String testSteps;
-	private String testData;
-	private String expectedResult;
-	
-	public String getTestCaseID() {
-		return testCaseID;
+	private String PositiveOrNegative;
+	public String getTestCaseId() {
+		return testCaseId;
 	}
-	public void setTestCaseID(String testCaseID) {
-		this.testCaseID = testCaseID;
+	public void setTestCaseId(String testCaseId) {
+		this.testCaseId = testCaseId;
 	}
-	public String getRequirementId() {
-		return requirementId;
+	public String getTestCaseName() {
+		return testCaseName;
 	}
-	public void setRequirementId(String requirementId) {
-		this.requirementId = requirementId;
+	public void setTestCaseName(String testCaseName) {
+		this.testCaseName = testCaseName;
 	}
-	public String getTestScenarioId() {
-		return testScenarioId;
+	public String getTestCaseDesciption() {
+		return testCaseDesciption;
 	}
-	public void setTestScenarioId(String testScenarioId) {
-		this.testScenarioId = testScenarioId;
-	}
-	public String getTestCaseDescription() {
-		return testCaseDescription;
-	}
-	public void setTestCaseDescription(String testCaseDescription) {
-		this.testCaseDescription = testCaseDescription;
+	public void setTestCaseDesciption(String testCaseDesciption) {
+		this.testCaseDesciption = testCaseDesciption;
 	}
 	public String getTestCaseCategory() {
 		return testCaseCategory;
@@ -55,31 +50,13 @@ public class TestCaseModel {
 	public void setTestCaseTag(String testCaseTag) {
 		this.testCaseTag = testCaseTag;
 	}
-	public String getTestcaseKeyword() {
-		return testcaseKeyword;
+	public String getPositiveOrNegative() {
+		return PositiveOrNegative;
 	}
-	public void setTestcaseKeyword(String testcaseKeyword) {
-		this.testcaseKeyword = testcaseKeyword;
-	}
-	public String getTestSteps() {
-		return testSteps;
-	}
-	public void setTestSteps(String testSteps) {
-		this.testSteps = testSteps;
-	}
-	public String getTestData() {
-		return testData;
+	public void setPositiveOrNegative(String positiveOrNegative) {
+		PositiveOrNegative = positiveOrNegative;
 	}
 	
-	public void setTestData(String testData) {
-		this.testData = testData;
-	}
-	public String getExpectedResult() {
-		return expectedResult;
-	}
-	public void setExpectedResult(String expectedResult) {
-		this.expectedResult = expectedResult;
-	}
 	
 
 

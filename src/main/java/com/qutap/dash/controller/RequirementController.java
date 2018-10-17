@@ -1,5 +1,6 @@
 package com.qutap.dash.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qutap.dash.commonUtils.ErrorObject;
 import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.commonUtils.StatusCode;
 import com.qutap.dash.commonUtils.Utils;
@@ -38,58 +41,53 @@ org.slf4j.Logger log= LoggerFactory.getLogger(RequirementController.class);
 		log.info("url of the application"+req.getRequestURL().toString());
 		Response response=requirementService.saveRequirement(requirementModel);
 		response.setUrl(req.getRequestURL().toString());
-		return response;
-		
+		return response;		
 	}
 	
 	
 	@GetMapping("/Requirement/{requirementId}")
-	public   Object getRequirementById(@PathVariable String requirementId,HttpServletRequest req) {
-		
+	public @ResponseBody String getRequirementById(@PathVariable String requirementId,HttpServletRequest req) throws IOException {	
 		Response response=Utils.getResponseObject("getting project details data");
-		try {
-		
+		try {	
 			RequirementModel requirementModel=requirementService.getRequirementById(requirementId);
-		if(requirementModel==null) {
-			response.setStatus(StatusCode.FAILURE.name());
-		}else {
-			response.setStatus(StatusCode.SUCCESS.name());
-			response.setUrl(req.getRequestURL().toString());
-			response.setData(requirementModel);
-			return   Utils.getJson(response);	
-		}
-		}catch(Exception e) {
-			
+			if(requirementModel==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("Requirement", "null RequirementModel data");
+				response.setErrors(errorObject);
+				response.setStatus(StatusCode.FAILURE.name());
+			}else {
+				response.setStatus(StatusCode.SUCCESS.name());
+				response.setUrl(req.getRequestURL().toString());
+				response.setData(requirementModel);   	
+			}
+		}catch(Exception e) {		
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
 			log.info(e.getMessage());
 		}
-		return null;
-		
+		return (String) Utils.getJson(response);	
 	}
+
 	
 	@GetMapping("/Requirements")
-	public  Object getProjectListInfo(HttpServletRequest req) {
+	public @ResponseBody String getProjectListInfo(HttpServletRequest req) throws IOException {
 		Response response=Utils.getResponseObject("getting project details data");
-		try {
-		
-		List<RequirementModel> requirementModelList=requirementService.getRequirementList();
-		if(requirementModelList==null) {
-			response.setStatus(StatusCode.FAILURE.name());
-		}else {
-			response.setStatus(StatusCode.SUCCESS.name());
-			response.setUrl(req.getRequestURL().toString());
-			response.setData(requirementModelList);
-			return   Utils.getJson(response);	
-		}
-		}catch(Exception e) {
-			
+		try {		
+			List<RequirementModel> requirementModelList=requirementService.getRequirementList();
+			if(requirementModelList==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("Requirement", "null RequirementModel data");
+				response.setErrors(errorObject);
+				response.setStatus(StatusCode.FAILURE.name());
+			}else {
+				response.setStatus(StatusCode.SUCCESS.name());
+				response.setUrl(req.getRequestURL().toString());
+				response.setData(requirementModelList);	
+			}
+		}catch(Exception e) {			
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
 			log.info(e.getMessage());
 		}
-		return null;
-		
+		return (String) Utils.getJson(response);		
 	}
 	
 	
@@ -100,7 +98,6 @@ org.slf4j.Logger log= LoggerFactory.getLogger(RequirementController.class);
 	 Response response=requirementService.updateRequirement(requirementModel);
 	 response.setUrl(req.getRequestURL().toString());
 	 return response;
-
 	 }
 	
 	
@@ -109,8 +106,7 @@ org.slf4j.Logger log= LoggerFactory.getLogger(RequirementController.class);
 		log.info("url of the application"+req.getRequestURL().toString());
 		Response response=requirementService.deleteRequirement(requirementId);
 		response.setUrl(req.getRequestURL().toString());
-		return response;
-		
+		return response;	
 	}
 
 }

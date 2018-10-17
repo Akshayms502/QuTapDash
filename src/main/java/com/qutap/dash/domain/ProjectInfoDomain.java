@@ -1,14 +1,19 @@
 package com.qutap.dash.domain;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="projectInfo")
-public class ProjectInfoDomain {
-    @Id
+public class ProjectInfoDomain implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2337752672975163839L;
+	@Id
 	private String projectId;
 	private String projectName;
 	private String projDescri;

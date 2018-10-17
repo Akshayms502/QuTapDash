@@ -83,8 +83,7 @@ public class ModuleDaoImpl implements ModuleDao {
 			 update.set(key, value);
 			 }
 			 }
-
-			 moduleDomain   = mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().returnNew(true), ModuleDomain.class);
+			moduleDomain   = mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().returnNew(true), ModuleDomain.class);
 			response.setStatus(StatusCode.SUCCESS.name());
 			response.setData(moduleDomain);
 			return response;

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -22,16 +24,27 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.qutap.dash.commonUtils.Response;
+import com.qutap.dash.commonUtils.StatusCode;
+import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.config.ReadQutapProperties;
 import com.qutap.dash.controller.ExcelDataController;
+import com.qutap.dash.domain.ModuleDomain;
+import com.qutap.dash.domain.ProjectInfoDomain;
 import com.qutap.dash.domain.TestCaseDomain;
 import com.qutap.dash.domain.TestExecutionDomain;
 import com.qutap.dash.domain.TestStepDomain;
+import com.qutap.dash.model.ModuleModel;
+import com.qutap.dash.model.ProjectInfoModel;
+import com.qutap.dash.model.TestCaseModel;
+import com.qutap.dash.model.TestStepModel;
 import com.qutap.dash.repository.ExcelDataDao;
 
 @Service
@@ -154,5 +167,44 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 			}
 			return response;
 	}
+
+	@Override
+	public TestCaseModel getTestCaseData(String testCaseId) {
+		try {
+			TestCaseModel testCaseModel = new TestCaseModel();
+			TestCaseDomain testCaseDomain = excelDataDao.getTestCaseData(testCaseId);
+			BeanUtils.copyProperties(testCaseDomain, testCaseModel);
+			return testCaseModel;
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public List<TestStepModel> getTestStepList(String testCaseId) {
+		
+			try {
+				List<TestStepModel> testStepModelList=new ArrayList<TestStepModel>();
+				List<TestStepDomain> testStepDomainList=excelDataDao.getTestStepList(testCaseId);
+				for(TestStepDomain testStepDomain:testStepDomainList)
+				{
+					TestStepModel testStepModel=new TestStepModel();
+					 BeanUtils.copyProperties(testStepDomain, testStepModel);
+					 testStepModelList.add(testStepModel);
+				}
+				 return testStepModelList;
+			}
+				catch (Exception e) {
+					log.info(e.getMessage());
+					return null;
+				}
+		
+		}
+	
+	
+	
+	
+	
 }
 		

@@ -1,10 +1,16 @@
 package com.qutap.dash.model;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 
-public class RequirementModel {
+public class RequirementModel implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6812313138564800129L;
 	private String requirementId;
 	private String requirementName;
 	private String requirementCases;

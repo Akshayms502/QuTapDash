@@ -2,21 +2,21 @@ package com.qutap.dash.repository;
 
 
 
+import java.util.List;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.commonUtils.StatusCode;
 import com.qutap.dash.commonUtils.Utils;
-import com.qutap.dash.domain.ProjectInfoDomain;
-import com.qutap.dash.domain.RequirementDomain;
 import com.qutap.dash.domain.TestCaseDomain;
-import com.qutap.dash.domain.TestScenario;
 import com.qutap.dash.domain.TestStepDomain;
-import com.qutap.dash.domain.TestSuite;
 
 
 @Repository
@@ -59,4 +59,27 @@ public class ExcelDataDaoImpl implements ExcelDataDao{
 			return response;
 		}
 	}
-}
+	
+	@Override
+	public 	TestCaseDomain getTestCaseData(String testCaseId) {
+		try {
+			return mongoTemplate.findById(testCaseId, TestCaseDomain.class);
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public List<TestStepDomain> getTestStepList(String testCaseId) {
+			try {
+				Query query = new Query(new Criteria().where("testCaseId").is(testCaseId));
+				return  mongoTemplate.find(query, TestStepDomain.class, "testStep");
+			}
+			catch (Exception e) {
+				log.info(e.getMessage());
+				return null;
+			}
+		}
+	}
+

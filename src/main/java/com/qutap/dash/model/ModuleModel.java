@@ -1,10 +1,15 @@
 package com.qutap.dash.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
-public class ModuleModel {
+public class ModuleModel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3047911934691716032L;
 	private String moduleId;
 	private String moduleName;
 	private String projectId;

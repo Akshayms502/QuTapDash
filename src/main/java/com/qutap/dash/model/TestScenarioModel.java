@@ -1,6 +1,12 @@
 package com.qutap.dash.model;
 
-public class TestScenarioModel {
+import java.io.Serializable;
+
+public class TestScenarioModel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2242211755971443861L;
 	private String testScenarioId;
 	private String projectId;
 	private String testScenario;
