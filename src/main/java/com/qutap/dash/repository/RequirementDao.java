@@ -15,4 +15,5 @@ public interface RequirementDao {
 	Response updateRequirement(RequirementDomain requirementDomain);
 	Response deleteRequirement(RequirementDomain requirementDomain);
 
+	
 }

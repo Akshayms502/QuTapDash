@@ -44,6 +44,7 @@ public class RequirementServiceImpl implements RequirementService {
 			catch (Exception e) {
 				log.info(e.getMessage());
 				return null;
+				
 			}
 	}
 
