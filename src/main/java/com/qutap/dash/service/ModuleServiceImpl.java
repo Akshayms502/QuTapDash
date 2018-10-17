@@ -9,7 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.exilant.CommonUtils.Response;
+import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.domain.ModuleDomain;
 import com.qutap.dash.model.ModuleModel;
 import com.qutap.dash.repository.ModuleDao;

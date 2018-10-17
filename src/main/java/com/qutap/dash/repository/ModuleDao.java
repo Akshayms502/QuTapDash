@@ -2,7 +2,7 @@ package com.qutap.dash.repository;
 
 import java.util.List;
 
-import com.exilant.CommonUtils.Response;
+import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.domain.ModuleDomain;
 import com.qutap.dash.domain.ProjectInfoDomain;
 

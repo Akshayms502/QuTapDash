@@ -1,20 +1,19 @@
 
 package com.qutap.dash.repository;
 
-<<<<<<< HEAD
+
 
 import java.lang.annotation.Annotation;
 
 import java.util.List;
 
 import org.bson.Document;
-=======
->>>>>>> d87ddb41296464bf5d1fcc513dce853b57f534f1
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
-<<<<<<< HEAD
+
 
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -22,14 +21,15 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.qutap.dash.CommonUtils.*;
+import com.qutap.dash.commonUtils.ErrorObject;
+import com.qutap.dash.commonUtils.Response;
+import com.qutap.dash.commonUtils.StatusCode;
+import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.domain.ProjectInfoDomain;
 
-
-=======
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
->>>>>>> d87ddb41296464bf5d1fcc513dce853b57f534f1
+
 @Repository
 @Transactional
 public class ProjectInfoDaoImpl implements ProjectInfoDao{

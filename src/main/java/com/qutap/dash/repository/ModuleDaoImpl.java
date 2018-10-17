@@ -13,10 +13,10 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.exilant.CommonUtils.ErrorObject;
-import com.exilant.CommonUtils.Response;
-import com.exilant.CommonUtils.StatusCode;
-import com.exilant.CommonUtils.Utils;
+import com.qutap.dash.commonUtils.ErrorObject;
+import com.qutap.dash.commonUtils.Response;
+import com.qutap.dash.commonUtils.StatusCode;
+import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.domain.ModuleDomain;
 
 
