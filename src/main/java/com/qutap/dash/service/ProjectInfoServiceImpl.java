@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qutap.dash.CommonUtils.Response;
+import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.controller.ProjectInfoController;
 import com.qutap.dash.domain.ProjectInfoDomain;
 import com.qutap.dash.model.ProjectInfoModel;
