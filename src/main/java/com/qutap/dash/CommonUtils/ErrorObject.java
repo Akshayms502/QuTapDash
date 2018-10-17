@@ -1,4 +1,5 @@
-package com.qutap.dash.commonUtils;
+package com.qutap.dash.CommonUtils;
+
 
 public class ErrorObject {
 	

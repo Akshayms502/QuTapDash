@@ -1,4 +1,6 @@
-package com.qutap.dash.commonUtils;
+package com.qutap.dash.CommonUtils;
+
+
 
 public class Response {
 	private String status;

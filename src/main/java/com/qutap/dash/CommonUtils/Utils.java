@@ -1,4 +1,6 @@
-package com.qutap.dash.commonUtils;
+package com.qutap.dash.CommonUtils;
+
+
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
