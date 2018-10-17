@@ -23,7 +23,7 @@ public class ReactiveWebApplication {
 	return new Docket(DocumentationType.SWAGGER_2)
 								.select().apis(RequestHandlerSelectors.any())
 								.paths(PathSelectors
-								.any())
+								.any()) 
 								.build();
 	}
 }
