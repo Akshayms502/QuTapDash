@@ -12,7 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import com.qutap.dash.CommonUtils.Response;
+=======
+import com.qutap.dash.commonUtils.Response;
+import com.qutap.dash.controller.ProjectInfoController;
+>>>>>>> d87ddb41296464bf5d1fcc513dce853b57f534f1
 import com.qutap.dash.domain.ProjectInfoDomain;
 import com.qutap.dash.model.ProjectInfoModel;
 import com.qutap.dash.repository.ProjectInfoDao;

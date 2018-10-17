@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.qutap.dash.CommonUtils.Response;
+import com.qutap.dash.commonUtils.Response;
 
 public interface ExcelDataService {
 
