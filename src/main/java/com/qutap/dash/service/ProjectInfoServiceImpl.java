@@ -29,34 +29,31 @@ public class ProjectInfoServiceImpl implements ProjectInfoService{
 	ProjectInfoDao projectInfoDao;
 
 	@Override
-	public Response saveProjectInfo(ProjectInfoModel projectInfoModel) {
-		
+	public Response saveProjectInfo(ProjectInfoModel projectInfoModel) {	
 		try {
 		ProjectInfoDomain projectInfoDomain=new ProjectInfoDomain();
-		
 		BeanUtils.copyProperties(projectInfoModel, projectInfoDomain);
 		Response response=projectInfoDao.saveProjectInfo(projectInfoDomain);
 		return response;
 		}catch (Exception e) {	
 			log.info(e.getMessage());
-		}return null;
+		}
+		return null;
 	}
 	
 	@Override
 	public ProjectInfoModel getProjectInfo(String projectId) {
 		try {
 		ProjectInfoModel projectInfoModel=new ProjectInfoModel();
-		ProjectInfoDomain projectInfoDomain=projectInfoDao.getProjectInfo(projectId);
-		
-		BeanUtils.copyProperties(projectInfoDomain, projectInfoModel);
-	
+		ProjectInfoDomain projectInfoDomain=projectInfoDao.getProjectInfo(projectId);	
+		BeanUtils.copyProperties(projectInfoDomain, projectInfoModel);	
 		return projectInfoModel;
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			log.info(e.getMessage());
 			return null;
 		}
 	}
+	
 	@Override
 	public ProjectInfoModel getProjectInfobyName(String projectName) {
 		try {
@@ -64,8 +61,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService{
 		ProjectInfoDomain projectInfoDomain=projectInfoDao.getProjectInfobyName(projectName);
 		BeanUtils.copyProperties(projectInfoDomain, projectInfoModel);
 		return projectInfoModel;
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			log.info(e.getMessage());
 			return null;
 		}
@@ -83,8 +79,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService{
 				 projectInfoModelList.add(projectInfoModel);
 			}
 			 return projectInfoModelList;
-		}
-			catch (Exception e) {
+		 }catch (Exception e) {
 				log.info(e.getMessage());
 				return null;
 			}
@@ -109,9 +104,10 @@ public class ProjectInfoServiceImpl implements ProjectInfoService{
 			
 			Response response=projectInfoDao.deleteProjectInfo(projectId);
 			return response;
-			}catch (Exception e) {	
+		}catch (Exception e) {	
 				log.info(e.getMessage());
-			}return null;
+		}
+		return null;
 	}
 
 	

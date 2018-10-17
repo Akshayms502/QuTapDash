@@ -94,36 +94,29 @@ public class ProjectInfoDaoImpl implements ProjectInfoDao{
 	public Response updateProjectInfo(ProjectInfoDomain projectInfoDomain) {
 		Response response=Utils.getResponseObject("updating project Details");
 		try {
-		
-		Query query=new Query(Criteria.where("projectId").is(projectInfoDomain.getProjectId()));
-		Document doc=new Document();
-		
-		mongoTemplate.getConverter().write(projectInfoDomain, doc);	
-		Update update=new Update();
-		for(String key:doc.keySet()) {
-			
-			Object value=doc.get(key);
-			if(value!=null) {
-				update.set(key, value);
-			}
-		}
-		
-	   // mongoTemplate.updateMulti(query, update, ProjectInfoDomain.class, "projectInfo");//it will return UpdateResult
-	    
-		 projectInfoDomain= mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().returnNew(true), ProjectInfoDomain.class);//it will return New Updated Data
-	    
-		response.setStatus(StatusCode.SUCCESS.name());
-		response.setData(projectInfoDomain);
-		return response;
+			Query query=new Query(Criteria.where("projectId").is(projectInfoDomain.getProjectId()));
+			Document doc=new Document();		
+			mongoTemplate.getConverter().write(projectInfoDomain, doc);	
+			Update update=new Update();
+			for(String key:doc.keySet()) {		
+				Object value=doc.get(key);
+				if(value!=null) {
+					update.set(key, value);
+				}
+			} 
+			projectInfoDomain= mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().returnNew(true), ProjectInfoDomain.class);//it will return New Updated Data
+			response.setStatus(StatusCode.SUCCESS.name());
+			response.setData(projectInfoDomain);  
+			return response;
 		}catch (Exception e) {
 			log.info(e.getMessage());
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
 			return response;
-		}
-		
+		}	
 	}
 
+	
 	@Override
 	public Response deleteProjectInfo(String projectId) {
 		Response response=Utils.getResponseObject("deleting project Details");

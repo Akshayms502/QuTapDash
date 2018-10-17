@@ -69,19 +69,15 @@ public class ModuleDaoImpl implements ModuleDao {
 	public Response updateModuleInfo(ModuleDomain moduleDomain) {
 		Response response = Utils.getResponseObject("updating project Details");
 		try {
-			//ModuleDomain modelDomain = getModuleInfo(moduleDomain.getModuleId());
-
 			 Query query=new Query(Criteria.where("moduleId").is(moduleDomain.getModuleId()));
 			 Document doc=new Document();
-
 			 mongoTemplate.getConverter().write(moduleDomain, doc); 
 			 Update update=new Update();
 			 for(String key:doc.keySet()) {
-
-			 Object value=doc.get(key);
-			 if(value!=null) {
-			 update.set(key, value);
-			 }
+				 Object value=doc.get(key);
+				 if(value!=null) {
+					 update.set(key, value);
+				 }
 			 }
 			moduleDomain   = mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().returnNew(true), ModuleDomain.class);
 			response.setStatus(StatusCode.SUCCESS.name());
@@ -95,6 +91,7 @@ public class ModuleDaoImpl implements ModuleDao {
 		}
 	}
 
+	
 	@Override
 	public Response deleteModuleInfo(String moduleId) {
 		Response response = Utils.getResponseObject("deleting project Details");

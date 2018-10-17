@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.commonUtils.StatusCode;
@@ -20,6 +21,7 @@ import com.qutap.dash.domain.RequirementDomain;
 
 
 @Repository
+@Transactional
 public class RequirementDaoImpl implements RequirementDao {
 	org.slf4j.Logger log= LoggerFactory.getLogger(RequirementDaoImpl.class);
 	
@@ -39,20 +41,16 @@ public class RequirementDaoImpl implements RequirementDao {
 				log.info(e.getMessage());
 				response.setStatus(StatusCode.FAILURE.name());
 				response.setErrors(e.getMessage());
-				return response;
-			
-			
+				return response;		
 		}
 	}
 	
 	@Override
 	public RequirementDomain getRequirementById(String requirementId) {
-		try {
-			
-			return mongoTemplate.findById(requirementId, RequirementDomain.class);
-			
+		try {	
+			return mongoTemplate.findById(requirementId, RequirementDomain.class);		
 			}
-			catch (Exception e) {
+		catch (Exception e) {
 				log.info(e.getMessage());
 				return null;
 			}
@@ -64,7 +62,7 @@ public class RequirementDaoImpl implements RequirementDao {
 		try {
 			return mongoTemplate.findAll(RequirementDomain.class);
 			}
-			catch (Exception e) {
+		catch (Exception e) {
 				log.info(e.getMessage());
 				return null;
 			}
@@ -75,40 +73,30 @@ public class RequirementDaoImpl implements RequirementDao {
 	 public Response updateRequirement(RequirementDomain requirementDomain) {
 		 Response response=Utils.getResponseObject("updating project Details");
 		 try {
-	
 			 Query query=new Query(Criteria.where("requirementId").is(requirementDomain.getRequirementId()));
 			 Document doc=new Document();
-		
 			 mongoTemplate.getConverter().write(requirementDomain, doc); 
 			 Update update=new Update();
 			 for(String key:doc.keySet()) {
-		
-			 Object value=doc.get(key);
-			 if(value!=null) {
-			 update.set(key, value);
-		 }
-		 }
-
-	    // mongoTemplate.updateMulti(query, update, ProjectInfoDomain.class, "projectInfo");//it will return UpdateResult
-		     
-		 requirementDomain= mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().returnNew(true), RequirementDomain.class);//it will return New Updated Data
-		     
-		 response.setStatus(StatusCode.SUCCESS.name());
-		 response.setData(requirementDomain);
-		 return response;
+				 Object value=doc.get(key);
+				 if(value!=null) {
+					 update.set(key, value);
+				 	}
+			 	}	     
+			 requirementDomain= mongoTemplate.findAndModify(query, update,new FindAndModifyOptions().returnNew(true), RequirementDomain.class);//it will return New Updated Data     
+			 response.setStatus(StatusCode.SUCCESS.name());
+			 response.setData(requirementDomain);
+			 return response;
 		 }catch (Exception e) {
 			 log.info(e.getMessage());
 			 response.setStatus(StatusCode.FAILURE.name());
 			 response.setErrors(e.getMessage());
-			 return response;
-			 
+			 return response;		 
 		 }
-	
-		 }
+	}
 
 	@Override
-	public Response deleteRequirement(RequirementDomain requirementDomain) {
-		
+	public Response deleteRequirement(RequirementDomain requirementDomain) {	
 		Response response=Utils.getResponseObject("Deleting project Details");
 		try {
 				mongoTemplate.remove(requirementDomain);
@@ -119,10 +107,8 @@ public class RequirementDaoImpl implements RequirementDao {
 			log.info(e.getMessage());
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
-			return response;
-		
-		
-	}
+			return response;	
+		}
 	}
 	
 }

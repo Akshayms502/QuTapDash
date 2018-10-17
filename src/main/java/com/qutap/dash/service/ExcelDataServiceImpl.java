@@ -97,7 +97,6 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 				Row row;		
 				TestStepDomain testStepDomain;
 				DataFormatter dataFormatter = new DataFormatter();
-				JSONObject resJSON = null;
 				List<TestStepDomain> testStepDomainList=new ArrayList<>();
 				List<TestCaseDomain> testCaseDomainList=new ArrayList<>();
 				for (int i = 0; i < numberOfSheets; i++) {
@@ -182,8 +181,7 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 	}
 
 	@Override
-	public List<TestStepModel> getTestStepList(String testCaseId) {
-		
+	public List<TestStepModel> getTestStepList(String testCaseId) {		
 			try {
 				List<TestStepModel> testStepModelList=new ArrayList<TestStepModel>();
 				List<TestStepDomain> testStepDomainList=excelDataDao.getTestStepList(testCaseId);
@@ -194,8 +192,7 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 					 testStepModelList.add(testStepModel);
 				}
 				 return testStepModelList;
-			}
-				catch (Exception e) {
+			}catch (Exception e) {
 					log.info(e.getMessage());
 					return null;
 				}

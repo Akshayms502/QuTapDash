@@ -83,7 +83,6 @@ public class ModuleServiceImpl implements ModuleService {
 	@Override
 	public Response deleteModuleModel(String moduleId) {
 		try {
-
 			Response response = moduleDao.deleteModuleInfo(moduleId);
 			return response;
 		} catch (Exception e) {
