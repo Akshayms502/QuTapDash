@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +25,7 @@ import com.qutap.dash.service.ExcelDataService;
 @RequestMapping("/Qutap")
 public class ExcelDataController {
 	
-org.slf4j.Logger log= LoggerFactory.getLogger(ExcelDataController.class);
+	Logger log= LoggerFactory.getLogger(ExcelDataController.class);
 	
 	@Autowired
 	ExcelDataService excelDataService1;
@@ -33,9 +34,7 @@ org.slf4j.Logger log= LoggerFactory.getLogger(ExcelDataController.class);
 	@PostMapping("/excel")
 	public Response readExcelData(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest req) throws IOException { 
 		log.info("url of the application"+req.getRequestURL().toString());
-		System.out.println("multipart"+multipartFile.isEmpty());
 		Response response=excelDataService1.readExcelData(multipartFile);
-		System.out.println("yeeeeeeeeeeeeeeeeeeeeeeeeee");
 		return response;
 		
 	}
