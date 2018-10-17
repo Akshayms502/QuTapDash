@@ -8,9 +8,9 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.qutap.dash.CommonUtils.Response;
-import com.qutap.dash.CommonUtils.StatusCode;
-import com.qutap.dash.CommonUtils.Utils;
+import com.qutap.dash.commonUtils.Response;
+import com.qutap.dash.commonUtils.StatusCode;
+import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.domain.ProjectInfoDomain;
 import com.qutap.dash.domain.RequirementDomain;
 import com.qutap.dash.domain.TestCaseDomain;

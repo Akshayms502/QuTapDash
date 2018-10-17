@@ -18,10 +18,13 @@ public class ReactiveWebApplication {
 		SpringApplication.run(ReactiveWebApplication.class, args);
 	}
 	
+<<<<<<< HEAD
 	@Bean
 	public Docket api(){
 	return new Docket(DocumentationType.SWAGGER_2)
 								.select().apis(RequestHandlerSelectors.any())
 								.paths(PathSelectors.any()).build();
 	}
+=======
+>>>>>>> eced33e3559d01df8ee131ba83f6fe1019855c3a
 }
