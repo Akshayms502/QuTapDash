@@ -7,13 +7,15 @@ import com.qutap.dash.domain.RequirementDomain;
 
 
 public interface RequirementDao {
-	Response saveRequirement(RequirementDomain requirementDomain);
-	RequirementDomain getRequirementById(String requirementId);
+	public Response saveRequirement(RequirementDomain requirementDomain);
+	
+	public RequirementDomain getRequirementById(String requirementId);
 	
 	public List<RequirementDomain> getRequirementList();
 	
-	Response updateRequirement(RequirementDomain requirementDomain);
-	Response deleteRequirement(RequirementDomain requirementDomain);
+	public Response updateRequirement(RequirementDomain requirementDomain);
+	
+	public Response deleteRequirement(RequirementDomain requirementDomain);
 
 	
 }

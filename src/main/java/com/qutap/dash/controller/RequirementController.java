@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import com.qutap.dash.commonUtils.ErrorObject;
 import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.commonUtils.StatusCode;
 import com.qutap.dash.commonUtils.Utils;
-import com.qutap.dash.model.ProjectInfoModel;
 import com.qutap.dash.model.RequirementModel;
 import com.qutap.dash.service.RequirementService;
 

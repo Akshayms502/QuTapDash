@@ -9,15 +9,16 @@ import com.qutap.dash.domain.ProjectInfoDomain;
 
 public interface ProjectInfoDao {
 
-	Response saveProjectInfo(ProjectInfoDomain projectInfoDomain);
+	public Response saveProjectInfo(ProjectInfoDomain projectInfoDomain);
 
-	ProjectInfoDomain getProjectInfo(String projectId);
-	ProjectInfoDomain getProjectInfobyName(String pName);
+	public ProjectInfoDomain getProjectInfo(String projectId);
+	
+	public ProjectInfoDomain getProjectInfobyName(String pName);
 	
 	public List<ProjectInfoDomain> getProjectListInfo();
 
-	Response updateProjectInfo(ProjectInfoDomain projectInfoDomain);
+	public Response updateProjectInfo(ProjectInfoDomain projectInfoDomain);
 
-	Response deleteProjectInfo(String projectId);
+	public Response deleteProjectInfo(String projectId);
 
 }

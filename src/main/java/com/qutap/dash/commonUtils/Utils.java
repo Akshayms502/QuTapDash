@@ -29,6 +29,7 @@ public class Utils {
 		}
 		return "";
 	}
+	
 	public static Object getJson(Object obj) throws IOException {
 		try {
 			return mapper.writeValueAsString(obj);

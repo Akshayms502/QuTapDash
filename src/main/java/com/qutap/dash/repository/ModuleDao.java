@@ -4,17 +4,16 @@ import java.util.List;
 
 import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.domain.ModuleDomain;
-import com.qutap.dash.domain.ProjectInfoDomain;
 
 public interface ModuleDao {
-	Response saveModuleModel(ModuleDomain moduleDomain);
+	public Response saveModuleModel(ModuleDomain moduleDomain);
 
-	ModuleDomain getModuleInfo(String moduleId);
+	public ModuleDomain getModuleInfo(String moduleId);
 
 	public List<ModuleDomain> getModuleListInfo();
 
-	Response updateModuleInfo(ModuleDomain moduleDomain);
+	public Response updateModuleInfo(ModuleDomain moduleDomain);
 
-	Response deleteModuleInfo(String modelId);
+	public Response deleteModuleInfo(String modelId);
 
 }

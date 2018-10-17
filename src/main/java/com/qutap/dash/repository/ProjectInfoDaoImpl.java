@@ -3,18 +3,13 @@ package com.qutap.dash.repository;
 
 
 
-import java.lang.annotation.Annotation;
-
 import java.util.List;
 
 import org.bson.Document;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
-
-
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -26,9 +21,6 @@ import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.commonUtils.StatusCode;
 import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.domain.ProjectInfoDomain;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional

@@ -1,20 +1,14 @@
 package com.qutap.dash.service;
 
 import java.util.ArrayList;
-
 import java.util.List;
-import java.util.UUID;
 
-import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
 import com.qutap.dash.commonUtils.Response;
-import com.qutap.dash.controller.ProjectInfoController;
 import com.qutap.dash.domain.ProjectInfoDomain;
 import com.qutap.dash.model.ProjectInfoModel;
 import com.qutap.dash.repository.ProjectInfoDao;
