@@ -3,7 +3,6 @@ package com.qutap.dash.controller;
 import java.io.IOException;
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.LoggerFactory;
@@ -18,45 +17,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qutap.dash.commonUtils.*;
+import com.qutap.dash.commonUtils.ErrorObject;
+import com.qutap.dash.commonUtils.Response;
+import com.qutap.dash.commonUtils.StatusCode;
+import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.model.ProjectInfoModel;
+import com.qutap.dash.model.TestScenarioModel;
 import com.qutap.dash.service.ProjectInfoService;
-
-
+import com.qutap.dash.service.TestScenarioService;
 @RestController
 @RequestMapping("/Qutap")
-public class ProjectInfoController {
-	
-	org.slf4j.Logger log= LoggerFactory.getLogger(ProjectInfoController.class);
+public class TestScenarioController {
+org.slf4j.Logger log= LoggerFactory.getLogger(ProjectInfoController.class);
 	
 	@Autowired
-	ProjectInfoService projectInfoService;
+	TestScenarioService testScenarioService;
 
-	@PostMapping("/saveProject")
-	public Response saveProjectInfo(@RequestBody ProjectInfoModel projectInfoModel,HttpServletRequest req) { 
+	@PostMapping("/saveTestScenario")
+	public Response saveTestScenarioInfo(@RequestBody TestScenarioModel testScenarioModel,HttpServletRequest req) { 
 		log.info("url of the application"+req.getRequestURL().toString());
-		Response response=projectInfoService.saveProjectInfo(projectInfoModel);
+		Response response=testScenarioService.saveTestScenarioInfo(testScenarioModel);
 		response.setUrl(req.getRequestURL().toString());
 		return response;		
 	}
 
 	
-	@GetMapping("/projectDataById/{projectId}")
-	public   @ResponseBody String getProjectInfo(@PathVariable String projectId,HttpServletRequest req) throws IOException {
-		Response response=Utils.getResponseObject("getting project details data");
+	@GetMapping("/testScenarioDataById/{testScenarioId}")
+	public   @ResponseBody String getTestScenarioInfo(@PathVariable String testScenarioId,HttpServletRequest req) throws IOException {
+		Response response=Utils.getResponseObject("getting TestScenario details data");
 		try {
-			ProjectInfoModel projectInfoModel=projectInfoService.getProjectInfo(projectId);	
-			if(projectInfoModel==null) {
-				ErrorObject errorObject=Utils.getErrorResponse("ProjectInfoData", "null projectInfoModel data");
+			TestScenarioModel testScenarioModel=testScenarioService.getTestScenarioInfo(testScenarioId);	
+			if(testScenarioModel==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("TestScenarioData", "null testScenarioModel data");
 				response.setErrors(errorObject);
 				response.setStatus(StatusCode.FAILURE.name());
 			}else {			
 				response.setStatus(StatusCode.SUCCESS.name());
 				response.setUrl(req.getRequestURL().toString());
-				response.setData(projectInfoModel);
+				response.setData(testScenarioModel);
 			}
 		}catch(Exception e) {		
-			log.error("sdfsdf", e);
 			response.setStatus(StatusCode.FAILURE.name());
 			response.setErrors(e.getMessage());
 			log.info(e.getMessage());
@@ -65,19 +65,19 @@ public class ProjectInfoController {
 	}
 	
 	
-	@GetMapping("/projectDataByName/{projectName}")
-	public   @ResponseBody String getProjectInfobyName(@PathVariable String projectName,HttpServletRequest req) throws IOException {
-		Response response=Utils.getResponseObject("getting project details data");
+	@GetMapping("/testScenarioDataByName/{testScenarioName}")
+	public   @ResponseBody String getProjectInfobyName(@PathVariable String testScenarioName,HttpServletRequest req) throws IOException {
+		Response response=Utils.getResponseObject("getting TestScenario details data");
 		try {		
-			ProjectInfoModel projectInfoModel=projectInfoService.getProjectInfobyName(projectName);
-			if(projectInfoModel==null) {
-				ErrorObject errorObject=Utils.getErrorResponse("ProjectInfoData", "null projectInfoModel data");
+			TestScenarioModel testScenarioModel=testScenarioService.getTestScenarioInfobyName(testScenarioName);
+			if(testScenarioModel==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("TestScenarioData", "null testScenarioModel data");
 				response.setErrors(errorObject);
 				response.setStatus(StatusCode.FAILURE.name());
 			}else {
 				response.setStatus(StatusCode.SUCCESS.name());
 				response.setUrl(req.getRequestURL().toString());
-				response.setData(projectInfoModel);
+				response.setData(testScenarioModel);
 			}
 		}catch(Exception e) {			
 			response.setStatus(StatusCode.FAILURE.name());
@@ -88,19 +88,19 @@ public class ProjectInfoController {
 	}
 	
 	
-	@GetMapping("/listOfprojects")
-	public  @ResponseBody String getProjectListInfo(HttpServletRequest req) throws IOException {
+	@GetMapping("/listOftestScenarios")
+	public  @ResponseBody String gettestScenarioListInfo(HttpServletRequest req) throws IOException {
 		Response response=Utils.getResponseObject("getting project details data");
 		try {		
-			List<ProjectInfoModel> projectInfoModel=projectInfoService.getProjectListInfo();
-			if(projectInfoModel==null) {
-				ErrorObject errorObject=Utils.getErrorResponse("ProjectInfoData", "null projectInfoModel data");
+			List<TestScenarioModel> testScenarioModel=testScenarioService.getTestScenarioListInfo();
+			if(testScenarioModel==null) {
+				ErrorObject errorObject=Utils.getErrorResponse("TestScenarioData", "null testScenarioModel data");
 				response.setErrors(errorObject);
 				response.setStatus(StatusCode.FAILURE.name());
 			}else {
 				response.setStatus(StatusCode.SUCCESS.name());
 				response.setUrl(req.getRequestURL().toString());
-				response.setData(projectInfoModel);
+				response.setData(testScenarioModel);
 			}
 		}catch(Exception e) {		
 			response.setStatus(StatusCode.FAILURE.name());
@@ -111,19 +111,20 @@ public class ProjectInfoController {
 	}
 
 	
-	@PutMapping("/updateProject")
-	public Response updateProjectInfo(@RequestBody ProjectInfoModel projectInfoModel,HttpServletRequest req) { 
+	@PutMapping("/updateTestScenario")
+	public Response updateTestScenarioInfo(@RequestBody TestScenarioModel testScenarioModel,HttpServletRequest req) { 
 		log.info("url of the application"+req.getRequestURL().toString());
-		Response response=projectInfoService.updateProjectInfo(projectInfoModel);
+		Response response=testScenarioService.updateTestScenarioInfo(testScenarioModel);
 		response.setUrl(req.getRequestURL().toString());
 		return response;	
 	}
 	
-	@DeleteMapping("/deleteProject/{projectId}")
-	public Response deleteProjectInfo(@PathVariable String projectId,HttpServletRequest req) { 
+	@DeleteMapping("/deleteTestScenario/{testScenarioId}")
+	public Response deleteTestScenarioInfo(@PathVariable String testScenarioId,HttpServletRequest req) { 
 		log.info("url of the application"+req.getRequestURL().toString());
-		Response response=projectInfoService.deleteProjectInfo(projectId);
+		Response response=testScenarioService.deleteTestScenarioInfo(testScenarioId);
 		response.setUrl(req.getRequestURL().toString());
 		return response;	
 	}
+
 }

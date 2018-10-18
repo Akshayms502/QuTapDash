@@ -8,6 +8,7 @@ public class TestCaseModel implements Serializable{
 	 */
 	private static final long serialVersionUID = -6503807222820347515L;
 	private String testCaseId;
+	private String testScenarioId;
 	private String testCaseName;
 	private String testCaseDesciption;
 	private String testCaseCategory;
@@ -56,6 +57,16 @@ public class TestCaseModel implements Serializable{
 	public void setPositiveOrNegative(String positiveOrNegative) {
 		PositiveOrNegative = positiveOrNegative;
 	}
+	public String getTestScenarioId() {
+		return testScenarioId;
+	}
+	public void setTestScenarioId(String testScenarioId) {
+		this.testScenarioId = testScenarioId;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	
 	
 

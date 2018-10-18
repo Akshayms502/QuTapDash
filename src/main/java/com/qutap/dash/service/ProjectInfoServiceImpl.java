@@ -2,6 +2,7 @@ package com.qutap.dash.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -27,6 +28,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService{
 		try {
 		ProjectInfoDomain projectInfoDomain=new ProjectInfoDomain();
 		BeanUtils.copyProperties(projectInfoModel, projectInfoDomain);
+		projectInfoDomain.setProjectId(UUID.randomUUID().toString().substring(0, 5));
 		Response response=projectInfoDao.saveProjectInfo(projectInfoDomain);
 		return response;
 		}catch (Exception e) {	

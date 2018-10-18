@@ -16,4 +16,6 @@ public interface ModuleDao {
 
 	public Response deleteModuleInfo(String modelId);
 
+public List<ModuleDomain> getModuleModelList(String projectId);
+
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document(collection="ModuleInfo")
+@Document
 public class ModuleDomain implements Serializable{
 	/**
 	 * 
@@ -15,13 +15,8 @@ public class ModuleDomain implements Serializable{
 	private String moduleId;
 	private String moduleName;
 	private String projectId;
-//	private Requirement requirement;
-//	public Requirement getRequirement() {
-//		return requirement;
-//	}
-//	public void setRequirement(Requirement requirement) {
-//		this.requirement = requirement;
-//	}
+	private List<RequirementDomain> requirementDomain;
+
 	public String getModuleId() {
 		return moduleId;
 	}
@@ -40,6 +35,13 @@ public class ModuleDomain implements Serializable{
 	public void setProjectId(String projectId) {
 		this.projectId = projectId;
 	}
+	public List<RequirementDomain> getRequirementDomain() {
+		return requirementDomain;
+	}
+	public void setRequirementDomain(List<RequirementDomain> requirementDomain) {
+		this.requirementDomain = requirementDomain;
+	}
+	
 	
 			
 }

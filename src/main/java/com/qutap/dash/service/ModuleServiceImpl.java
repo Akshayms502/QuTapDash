@@ -13,6 +13,7 @@ import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.domain.ModuleDomain;
 import com.qutap.dash.model.ModuleModel;
 import com.qutap.dash.repository.ModuleDao;
+import com.qutap.dash.repository.ProjectInfoDao;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {
@@ -21,13 +22,17 @@ public class ModuleServiceImpl implements ModuleService {
 
 	@Autowired
 	ModuleDao moduleDao;
+	
+	@Autowired
+	ProjectInfoDao projectInfoDao;
 
 	@Override
-	public Response saveModuleModel(ModuleModel ModuleModel) {
+	public Response saveModuleModel(ModuleModel moduleModel) {
 		try {
 			ModuleDomain moduleDomain = new ModuleDomain();
-			ModuleModel.setModuleId(UUID.randomUUID().toString().substring(0, 8));
-			BeanUtils.copyProperties(ModuleModel, moduleDomain);
+			moduleModel.setModuleId(UUID.randomUUID().toString().substring(0, 5));
+			moduleDomain.setProjectId(projectInfoDao.getProjectInfo(moduleModel.getProjectId()).getProjectId());
+			BeanUtils.copyProperties(moduleModel, moduleDomain);		
 			Response response = moduleDao.saveModuleModel(moduleDomain);
 			return response;
 		} catch (Exception e) {
@@ -90,5 +95,23 @@ public class ModuleServiceImpl implements ModuleService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<ModuleModel> getModuleModelList(String projectId) {
+		try {
+			List<ModuleModel> moduleList = new ArrayList<>();
+		List<ModuleDomain> moduleDomainList = moduleDao.getModuleModelList(projectId);
+			for (ModuleDomain moduleDomain : moduleDomainList) {
+				ModuleModel moduleModel = new ModuleModel();
+				BeanUtils.copyProperties(moduleDomain, moduleModel);
+				moduleList.add(moduleModel);
+			}
+			return moduleList;
+		} catch (Exception e) {
+			log.info(e.getMessage());
+			return null;
+		}
+
+	} 
 
 }

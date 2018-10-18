@@ -64,6 +64,30 @@ public class ModuleContoller {
 		return (String) Utils.getJson(response);
 	}
 
+/*	
+	
+	@GetMapping("/ModuleData/{projectId}")
+	public  List<ModuleModel> getModuleInfoList(@PathVariable String projectId, HttpServletRequest req) throws IOException {
+		Response response = Utils.getResponseObject("getting project details data");
+		try {
+			 List<ModuleModel> moduleModelList = moduleService.getModuleModelList(projectId);
+			if (moduleModelList == null) {
+				ErrorObject errorObject=Utils.getErrorResponse("Module", "null ModuleModel data");
+				response.setErrors(errorObject);
+				response.setStatus(StatusCode.FAILURE.name());
+			} else {
+				response.setStatus(StatusCode.SUCCESS.name());
+				response.setUrl(req.getRequestURL().toString());
+				response.setData(moduleModelList);
+				 Utils.getJson(response);
+			}
+		}catch (Exception e) {
+			response.setStatus(StatusCode.FAILURE.name());
+			response.setErrors(e.getMessage());
+			log.info(e.getMessage());
+		}
+		return  (List<ModuleModel>) Utils.getJson(response);
+	} */
 	
 	@GetMapping("/ModuleData")
 	public @ResponseBody String getProjectListInfo(HttpServletRequest req) throws IOException {

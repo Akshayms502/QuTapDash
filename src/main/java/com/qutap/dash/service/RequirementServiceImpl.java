@@ -2,6 +2,7 @@ package com.qutap.dash.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -26,6 +27,7 @@ public class RequirementServiceImpl implements RequirementService {
 			RequirementDomain requirementDomain=new RequirementDomain();
 			//requirementModel.setRequirementId(UUID.randomUUID().toString().substring(0, 8));
 		 BeanUtils.copyProperties(requirementModel, requirementDomain);
+		 requirementDomain.setRequirementId(UUID.randomUUID().toString());
 		  Response response=requirementDao.saveRequirement(requirementDomain);
 		  return response;
 		}catch (Exception e) {	
@@ -58,13 +60,10 @@ public class RequirementServiceImpl implements RequirementService {
 			 {
 				 RequirementModel requirementModel=new RequirementModel();
 			BeanUtils.copyProperties(requirementDomain, requirementModel);
-			requirementModelList.add(requirementModel);
-			
-			}
-			 
+			requirementModelList.add(requirementModel);		
+			}	 
 			 return requirementModelList;
-		}
-			catch (Exception e) {
+		}catch (Exception e) {
 				log.info(e.getMessage());
 				return null;
 			}

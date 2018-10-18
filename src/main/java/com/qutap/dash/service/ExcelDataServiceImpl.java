@@ -30,10 +30,14 @@ import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.config.ReadQutapProperties;
 import com.qutap.dash.domain.TestCaseDomain;
 import com.qutap.dash.domain.TestExecutionDomain;
+import com.qutap.dash.domain.TestScenarioDomain;
 import com.qutap.dash.domain.TestStepDomain;
 import com.qutap.dash.model.TestCaseModel;
 import com.qutap.dash.model.TestStepModel;
 import com.qutap.dash.repository.ExcelDataDao;
+import com.qutap.dash.repository.RequirementDao;
+import com.qutap.dash.repository.RequirementDaoImpl;
+import com.qutap.dash.repository.TestScenarioDao;
 
 @Service
 public class ExcelDataServiceImpl implements ExcelDataService{
@@ -45,6 +49,9 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 	
 	@Autowired
 	ReadQutapProperties readProperties;
+	
+	@Autowired
+	TestScenarioDao testScenarioDao;
 
 	Response response=new Response();
 
@@ -81,12 +88,14 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 				}
 				int numberOfSheets = workbook.getNumberOfSheets();
 				String testCaseValue;
-				TestCaseDomain  testCaseDomain= null;
+				TestCaseDomain  testCaseDomain;
 				Row row;		
 				TestStepDomain testStepDomain;
+				TestScenarioDomain testScenarioDomain;
 				DataFormatter dataFormatter = new DataFormatter();
 				List<TestStepDomain> testStepDomainList=new ArrayList<>();
 				List<TestCaseDomain> testCaseDomainList=new ArrayList<>();
+				List<TestScenarioDomain> testScenarioDomainList=new ArrayList<>();
 				for (int i = 0; i < numberOfSheets; i++) {
 					Sheet sheet = workbook.getSheetAt(i);
 					Iterator<Row> rowIterator = sheet.iterator();
@@ -94,36 +103,39 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 						row = rowIterator.next();
 						int rownum=row.getRowNum();
 					if(rownum>=6) {
-						if(!((dataFormatter.formatCellValue(row.getCell(3)).isEmpty()))){
+						if(!((dataFormatter.formatCellValue(row.getCell(1)).isEmpty()))){
+							testScenarioDomain=new TestScenarioDomain();
+		//					TestScenarioDomain testScenarioDomainName=testScenarioDao.getTestScenarioInfobyName(dataFormatter.formatCellValue(row.getCell(0)));
+							
 							testCaseDomain= new TestCaseDomain();
-							System.out.println(dataFormatter.formatCellValue(row.getCell(3)));
-							testCaseDomain.setTestCaseId(dataFormatter.formatCellValue(row.getCell(3)));
-							testCaseDomain.setTestCaseName(dataFormatter.formatCellValue(row.getCell(4)));
-							testCaseDomain.setTestCaseCategory(dataFormatter.formatCellValue(row.getCell(5)));
-							testCaseDomain.setTestCasePriority(dataFormatter.formatCellValue(row.getCell(6)));
-							testCaseDomain.setTestCaseTag(dataFormatter.formatCellValue(row.getCell(7)));
-							testCaseDomain.setTestCaseDesciption(dataFormatter.formatCellValue(row.getCell(8)));
-							testCaseDomain.setPositiveOrNegative(dataFormatter.formatCellValue(row.getCell(9)));
+							testCaseDomain.setTestCaseId(dataFormatter.formatCellValue(row.getCell(1)));
+		//					testCaseDomain.setTestScenarioId(testScenarioDomainName.getTestScenarioId());
+							testCaseDomain.setTestCaseName(dataFormatter.formatCellValue(row.getCell(2)));
+							testCaseDomain.setTestCaseCategory(dataFormatter.formatCellValue(row.getCell(3)));
+							testCaseDomain.setTestCasePriority(dataFormatter.formatCellValue(row.getCell(4)));
+							testCaseDomain.setTestCaseTag(dataFormatter.formatCellValue(row.getCell(5)));
+							testCaseDomain.setTestCaseDesciption(dataFormatter.formatCellValue(row.getCell(6)));
+							testCaseDomain.setPositiveOrNegative(dataFormatter.formatCellValue(row.getCell(7)));
 							testCaseDomainList.add(testCaseDomain);
 							 
 							while (rowIterator.hasNext()) {
 								row = rowIterator.next();
 		
-								if (dataFormatter.formatCellValue(row.getCell(11)).equals(TEST_CASE_END)) {
+								if (dataFormatter.formatCellValue(row.getCell(9)).equals(TEST_CASE_END)) {
 									break;
 								}
 								testStepDomain = new TestStepDomain();
 								testStepDomain.setTestCaseId(testCaseDomain.getTestCaseId());
-								testStepDomain.setRunnerType(dataFormatter.formatCellValue(row.getCell(10)));;
-								testStepDomain.setAction(dataFormatter.formatCellValue(row.getCell(12)));
-								testStepDomain.setExcecuteOrSkip(dataFormatter.formatCellValue(row.getCell(13)));
-								testStepDomain.setDependency(dataFormatter.formatCellValue(row.getCell(14)));
-								testStepDomain.setParamGroupObject(dataFormatter.formatCellValue(row.getCell(16)));
-								testStepDomain.setExpectedResult(dataFormatter.formatCellValue(row.getCell(17)));
-								testStepDomain.setActualResult(dataFormatter.formatCellValue(row.getCell(18)));
-								testStepDomain.setParamGroupId(dataFormatter.formatCellValue(row.getCell(19)));
+								testStepDomain.setRunnerType(dataFormatter.formatCellValue(row.getCell(8)));;
+								testStepDomain.setAction(dataFormatter.formatCellValue(row.getCell(10)));
+								testStepDomain.setExcecuteOrSkip(dataFormatter.formatCellValue(row.getCell(11)));
+								testStepDomain.setDependency(dataFormatter.formatCellValue(row.getCell(12)));
+								testStepDomain.setParamGroupObject(dataFormatter.formatCellValue(row.getCell(13)));
+								testStepDomain.setExpectedResult(dataFormatter.formatCellValue(row.getCell(15)));
+								testStepDomain.setActualResult(dataFormatter.formatCellValue(row.getCell(16)));
+								testStepDomain.setParamGroupId(dataFormatter.formatCellValue(row.getCell(17)));
 								
-								testCaseValue = dataFormatter.formatCellValue(row.getCell(15));
+								testCaseValue = dataFormatter.formatCellValue(row.getCell(14));
 								List<String> testParamData = new ArrayList<String>();
 								if (testCaseValue.equals("")) {
 									testStepDomain.setTestParamData(testParamData);

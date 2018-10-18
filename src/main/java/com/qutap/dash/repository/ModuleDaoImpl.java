@@ -18,6 +18,7 @@ import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.commonUtils.StatusCode;
 import com.qutap.dash.commonUtils.Utils;
 import com.qutap.dash.domain.ModuleDomain;
+import com.qutap.dash.domain.ProjectInfoDomain;
 
 
 @Repository
@@ -108,6 +109,19 @@ public class ModuleDaoImpl implements ModuleDao {
 			response.setErrors(err);
 			return response;
 		}
+	}
+
+	@Override
+	public List<ModuleDomain> getModuleModelList(String projectId) {
+		try {	
+			Query query=new Query();
+			query.addCriteria(Criteria.where("projectId").is(projectId));			
+			return mongoTemplate.find(query, ModuleDomain.class, "ModuleInfo");
+			}
+			catch (Exception e) {
+				log.info(e.getMessage());
+				return null;
+			}
 	}
 
 }

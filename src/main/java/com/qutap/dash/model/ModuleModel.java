@@ -13,6 +13,7 @@ public class ModuleModel implements Serializable{
 	private String moduleId;
 	private String moduleName;
 	private String projectId;
+	private List<RequirementModel> requirementModel;
 
 	public String getModuleId() {
 		return moduleId;
@@ -31,6 +32,12 @@ public class ModuleModel implements Serializable{
 	}
 	public void setProjectId(String projectId) {
 		this.projectId = projectId;
+	}
+	public List<RequirementModel> getRequirementModel() {
+		return requirementModel;
+	}
+	public void setRequirementModel(List<RequirementModel> requirementModel) {
+		this.requirementModel = requirementModel;
 	}
 	
 	

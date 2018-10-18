@@ -3,9 +3,12 @@ package com.qutap.dash.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.qutap.dash.model.ModuleModel;
 
 @Document(collection="projectInfo")
 public class ProjectInfoDomain implements Serializable{
@@ -16,9 +19,17 @@ public class ProjectInfoDomain implements Serializable{
 	@Id
 	private String projectId;
 	private String projectName;
-	private String projDescri;
+	private String projectDescription;
+	private List<ModuleDomain> moduleDomain;
 	
-	
+	public List<ModuleDomain> getModuleDomain() {
+		return moduleDomain;
+	}
+
+	public void setModuleDomain(List<ModuleDomain> moduleDomain) {
+		this.moduleDomain = moduleDomain;
+	}
+
 	public String getProjectId() {
 		return projectId;
 	}
@@ -35,27 +46,11 @@ public class ProjectInfoDomain implements Serializable{
 		this.projectName = projectName;
 	}
 
-	public String getProjDescri() {
-		return projDescri;
+	public String getProjectDescription() {
+		return projectDescription;
 	}
 
-	public void setProjDescri(String projDescri) {
-		this.projDescri = projDescri;
-	}
-
-	
-
-//	public ArrayList<Requirement> getRequirList() {
-//		return requirList;
-//	}
-//
-//	public void setRequirList(ArrayList<Requirement> requirList) {
-//		this.requirList = requirList;
-//	}
-
-	
-	
-	
-	
-	
+	public void setProjectDescription(String projectDescription) {
+		this.projectDescription = projectDescription;
+	}	
 }

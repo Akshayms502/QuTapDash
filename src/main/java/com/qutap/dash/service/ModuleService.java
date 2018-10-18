@@ -17,4 +17,6 @@ public interface ModuleService {
 
 	public Response deleteModuleModel(String moduleId);
 
+	public List<ModuleModel> getModuleModelList(String projectId);
+
 }

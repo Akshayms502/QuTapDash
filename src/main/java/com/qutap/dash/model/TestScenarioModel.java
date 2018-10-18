@@ -8,32 +8,32 @@ public class TestScenarioModel implements Serializable{
 	 */
 	private static final long serialVersionUID = 2242211755971443861L;
 	private String testScenarioId;
-	private String projectId;
-	private String testScenario;
-	private String description;
+	private String requirementId;
+	private String testScenarioName;
+	private String testScenarioDescription;
 	public String getTestScenarioId() {
 		return testScenarioId;
 	}
 	public void setTestScenarioId(String testScenarioId) {
 		this.testScenarioId = testScenarioId;
 	}
-	public String getProjectId() {
-		return projectId;
+	public String getRequirementId() {
+		return requirementId;
 	}
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
+	public void setRequirementId(String requirementId) {
+		this.requirementId = requirementId;
 	}
-	public String getTestScenario() {
-		return testScenario;
+	public String getTestScenarioName() {
+		return testScenarioName;
 	}
-	public void setTestScenario(String testScenario) {
-		this.testScenario = testScenario;
+	public void setTestScenarioName(String testScenarioName) {
+		this.testScenarioName = testScenarioName;
 	}
-	public String getDescription() {
-		return description;
+	public String getTestScenarioDescription() {
+		return testScenarioDescription;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTestScenarioDescription(String testScenarioDescription) {
+		this.testScenarioDescription = testScenarioDescription;
 	}
 	
 	
