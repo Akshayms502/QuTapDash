@@ -15,13 +15,15 @@ public class ProjectInfoModel implements Serializable{
 	private String projectId;
 	private String projectName;
 	private String projectDescription;
-	private List<ModuleModel> moduleModel;
+	private List<ModuleModel> moduleList;
 	
-	public List<ModuleModel> getModuleModel() {
-		return moduleModel;
+	
+	
+	public List<ModuleModel> getModuleList() {
+		return moduleList;
 	}
-	public void setModuleModel(List<ModuleModel> moduleModel) {
-		this.moduleModel = moduleModel;
+	public void setModuleList(List<ModuleModel> moduleList) {
+		this.moduleList = moduleList;
 	}
 	public String getProjectId() {
 		return projectId;

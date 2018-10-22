@@ -1,10 +1,11 @@
 package com.qutap.dash.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document
+
 public class RequirementDomain implements Serializable{	
 	/**
 	 * 
@@ -12,10 +13,10 @@ public class RequirementDomain implements Serializable{
 	private static final long serialVersionUID = -1019240821095658694L;
 	@Id
 	private String requirementId;
-	private String moduleId;
 	private String requirementName;
 	private String requirementCases;
-	private String requirDescri;
+	private String requirementDescription;
+	private List<TestScenarioDomain> testScenarioList;
 	
 	public String getRequirementId() {
 		return requirementId;
@@ -35,17 +36,17 @@ public class RequirementDomain implements Serializable{
 	public void setRequirementCases(String requirementCases) {
 		this.requirementCases = requirementCases;
 	}
-	public String getRequirDescri() {
-		return requirDescri;
+	public String getRequirementDescription() {
+		return requirementDescription;
 	}
-	public void setRequirDescri(String requirDescri) {
-		this.requirDescri = requirDescri;
+	public void setRequirementDescription(String requirementDescription) {
+		this.requirementDescription = requirementDescription;
 	}
-	public String getModuleId() {
-		return moduleId;
+	public List<TestScenarioDomain> getTestScenarioList() {
+		return testScenarioList;
 	}
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
+	public void setTestScenarioList(List<TestScenarioDomain> testScenarioList) {
+		this.testScenarioList = testScenarioList;
 	}
 	
 

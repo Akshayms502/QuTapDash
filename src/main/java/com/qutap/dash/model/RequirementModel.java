@@ -1,6 +1,7 @@
 package com.qutap.dash.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
@@ -14,8 +15,9 @@ public class RequirementModel implements Serializable{
 	private String requirementId;
 	private String requirementName;
 	private String requirementCases;
-	private String requirDescri;
-	private String moduleId;
+	private String requirementDescription;
+	
+	private List<TestScenarioModel> testScenarioList;
 	
 	public String getRequirementId() {
 		return requirementId;
@@ -35,18 +37,19 @@ public class RequirementModel implements Serializable{
 	public void setRequirementCases(String requirementCases) {
 		this.requirementCases = requirementCases;
 	}
-	public String getRequirDescri() {
-		return requirDescri;
+	public String getRequirementDescription() {
+		return requirementDescription;
 	}
-	public void setRequirDescri(String requirDescri) {
-		this.requirDescri = requirDescri;
+	public void setRequirementDescription(String requirementDescription) {
+		this.requirementDescription = requirementDescription;
 	}
-	public String getModuleId() {
-		return moduleId;
+	public List<TestScenarioModel> getTestScenarioList() {
+		return testScenarioList;
 	}
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
+	public void setTestScenarioList(List<TestScenarioModel> testScenarioList) {
+		this.testScenarioList = testScenarioList;
 	}
+	
 	
 
 }

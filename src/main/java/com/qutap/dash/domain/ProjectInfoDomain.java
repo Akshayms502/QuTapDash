@@ -20,14 +20,17 @@ public class ProjectInfoDomain implements Serializable{
 	private String projectId;
 	private String projectName;
 	private String projectDescription;
-	private List<ModuleDomain> moduleDomain;
+	private List<ModuleDomain> moduleList;
 	
-	public List<ModuleDomain> getModuleDomain() {
-		return moduleDomain;
+	
+	
+
+	public List<ModuleDomain> getModuleList() {
+		return moduleList;
 	}
 
-	public void setModuleDomain(List<ModuleDomain> moduleDomain) {
-		this.moduleDomain = moduleDomain;
+	public void setModuleList(List<ModuleDomain> moduleList) {
+		this.moduleList = moduleList;
 	}
 
 	public String getProjectId() {

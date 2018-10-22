@@ -12,8 +12,7 @@ public class ModuleModel implements Serializable{
 	private static final long serialVersionUID = 3047911934691716032L;
 	private String moduleId;
 	private String moduleName;
-	private String projectId;
-	private List<RequirementModel> requirementModel;
+	private List<RequirementModel> requirementList;
 
 	public String getModuleId() {
 		return moduleId;
@@ -27,18 +26,14 @@ public class ModuleModel implements Serializable{
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
 	}
-	public String getProjectId() {
-		return projectId;
+	public List<RequirementModel> getRequirementList() {
+		return requirementList;
 	}
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
+	public void setRequirementList(List<RequirementModel> requirementList) {
+		this.requirementList = requirementList;
 	}
-	public List<RequirementModel> getRequirementModel() {
-		return requirementModel;
-	}
-	public void setRequirementModel(List<RequirementModel> requirementModel) {
-		this.requirementModel = requirementModel;
-	}
+	
+
 	
 	
 			

@@ -31,7 +31,7 @@ TestScenarioDao  testScenarioDao;
 		try {
 			TestScenarioDomain testScenarioDomain=new TestScenarioDomain();
 			BeanUtils.copyProperties(testScenarioModel, testScenarioDomain);
-			testScenarioDomain.setRequirementId(UUID.randomUUID().toString());
+//			testScenarioDomain.setRequirementId(UUID.randomUUID().toString());
 			Response response=testScenarioDao.saveTestScenarioInfo(testScenarioDomain);
 			return response;
 			}catch (Exception e) {	

@@ -28,7 +28,7 @@ public class ProjectInfoServiceImpl implements ProjectInfoService{
 		try {
 		ProjectInfoDomain projectInfoDomain=new ProjectInfoDomain();
 		BeanUtils.copyProperties(projectInfoModel, projectInfoDomain);
-		projectInfoDomain.setProjectId(UUID.randomUUID().toString().substring(0, 5));
+//		projectInfoDomain.setProjectId(UUID.randomUUID().toString().substring(0, 5));
 		Response response=projectInfoDao.saveProjectInfo(projectInfoDomain);
 		return response;
 		}catch (Exception e) {	

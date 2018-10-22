@@ -31,7 +31,7 @@ public class ModuleServiceImpl implements ModuleService {
 		try {
 			ModuleDomain moduleDomain = new ModuleDomain();
 			moduleModel.setModuleId(UUID.randomUUID().toString().substring(0, 5));
-			moduleDomain.setProjectId(projectInfoDao.getProjectInfo(moduleModel.getProjectId()).getProjectId());
+//			moduleDomain.setProjectId(projectInfoDao.getProjectInfo(moduleModel.getProjectId()).getProjectId());
 			BeanUtils.copyProperties(moduleModel, moduleDomain);		
 			Response response = moduleDao.saveModuleModel(moduleDomain);
 			return response;
