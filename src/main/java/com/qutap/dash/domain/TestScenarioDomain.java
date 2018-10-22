@@ -1,14 +1,14 @@
 package com.qutap.dash.domain;
 
-
-
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.qutap.dash.model.TestCaseModel;
 
-public class TestScenarioDomain implements Serializable {	
+public class TestScenarioDomain implements Serializable {
 	/**
 	 * 
 	 */
@@ -17,24 +17,38 @@ public class TestScenarioDomain implements Serializable {
 	private String testScenarioId;
 	private String testScenarioName;
 	private String testScenarioDescription;
+	private List<TestCaseDomain> testCaseList;
+
 	public String getTestScenarioId() {
 		return testScenarioId;
 	}
+
 	public void setTestScenarioId(String testScenarioId) {
 		this.testScenarioId = testScenarioId;
 	}
+
 	public String getTestScenarioName() {
 		return testScenarioName;
 	}
+
 	public void setTestScenarioName(String testScenarioName) {
 		this.testScenarioName = testScenarioName;
 	}
+
 	public String getTestScenarioDescription() {
 		return testScenarioDescription;
 	}
+
 	public void setTestScenarioDescription(String testScenarioDescription) {
 		this.testScenarioDescription = testScenarioDescription;
 	}
-		
-	
+
+	public List<TestCaseDomain> getTestCaseList() {
+		return testCaseList;
+	}
+
+	public void setTestCaseList(List<TestCaseDomain> testCaseList) {
+		this.testCaseList = testCaseList;
+	}
+
 }

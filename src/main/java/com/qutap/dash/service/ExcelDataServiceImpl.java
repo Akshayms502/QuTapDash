@@ -96,6 +96,7 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 				List<TestStepDomain> testStepDomainList=new ArrayList<>();
 				List<TestCaseDomain> testCaseDomainList=new ArrayList<>();
 				List<TestScenarioDomain> testScenarioDomainList=new ArrayList<>();
+				
 				for (int i = 0; i < numberOfSheets; i++) {
 					Sheet sheet = workbook.getSheetAt(i);
 					Iterator<Row> rowIterator = sheet.iterator();
@@ -116,6 +117,7 @@ public class ExcelDataServiceImpl implements ExcelDataService{
 							testCaseDomain.setTestCaseTag(dataFormatter.formatCellValue(row.getCell(5)));
 							testCaseDomain.setTestCaseDesciption(dataFormatter.formatCellValue(row.getCell(6)));
 							testCaseDomain.setPositiveOrNegative(dataFormatter.formatCellValue(row.getCell(7)));
+							testCaseDomain.setTestStepList(testStepDomainList);
 							testCaseDomainList.add(testCaseDomain);
 							 
 							while (rowIterator.hasNext()) {

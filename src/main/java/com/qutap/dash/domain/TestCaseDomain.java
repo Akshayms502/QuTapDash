@@ -1,11 +1,14 @@
 package com.qutap.dash.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="testCase")
+import com.qutap.dash.model.TestStepModel;
+
+
 public class TestCaseDomain  implements Serializable{
 	/**
 	 * 
@@ -20,6 +23,8 @@ public class TestCaseDomain  implements Serializable{
 	private String testCasePriority;
 	private String testCaseTag;
 	private String PositiveOrNegative;
+	private List<TestStepDomain> testStepList;
+
 	
 
 	public String getTestCaseId() {
@@ -71,6 +76,12 @@ public class TestCaseDomain  implements Serializable{
 	public void setTestScenarioId(String testScenarioId) {
 		this.testScenarioId = testScenarioId;
 	}
-	
+	public List<TestStepDomain> getTestStepList() {
+		return testStepList;
+	}
+	public void setTestStepList(List<TestStepDomain> testStepList) {
+		this.testStepList = testStepList;
+	}
+
 	
 }
