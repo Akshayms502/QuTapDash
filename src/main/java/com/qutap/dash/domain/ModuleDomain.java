@@ -2,6 +2,9 @@ package com.qutap.dash.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
+
+import javax.annotation.Generated;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,11 +19,12 @@ public class ModuleDomain implements Serializable{
 	private String moduleName;
 	private List<RequirementDomain> requirementList;
 
+	
 	public String getModuleId() {
 		return moduleId;
 	}
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
+	public void setModuleId(String string) {
+		this.moduleId = string;
 	}
 	public String getModuleName() {
 		return moduleName;

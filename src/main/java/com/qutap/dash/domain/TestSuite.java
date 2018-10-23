@@ -5,6 +5,7 @@ package com.qutap.dash.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="TestSuite")
@@ -15,6 +16,7 @@ public class TestSuite implements Serializable{
 	 */
 	private static final long serialVersionUID = -4138193700871624282L;
 	private String testSuiteName;
+	@Id
 	private String testSuiteId;
 	private String testSuiteDesc;
 	private ArrayList<TestCaseDomain> testCaseList;

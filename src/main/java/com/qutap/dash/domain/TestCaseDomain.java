@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.qutap.dash.model.TestStepModel;
 
-
+@Document(collection="testCase")
 public class TestCaseDomain  implements Serializable{
 	/**
 	 * 
@@ -16,7 +16,6 @@ public class TestCaseDomain  implements Serializable{
 	private static final long serialVersionUID = 492713766521382860L;
 	@Id
 	private String testCaseId;
-	private String testScenarioId;
 	private String testCaseName;
 	private String testCaseDesciption;
 	private String testCaseCategory;
@@ -69,12 +68,6 @@ public class TestCaseDomain  implements Serializable{
 	}
 	public void setPositiveOrNegative(String positiveOrNegative) {
 		PositiveOrNegative = positiveOrNegative;
-	}
-	public String getTestScenarioId() {
-		return testScenarioId;
-	}
-	public void setTestScenarioId(String testScenarioId) {
-		this.testScenarioId = testScenarioId;
 	}
 	public List<TestStepDomain> getTestStepList() {
 		return testStepList;

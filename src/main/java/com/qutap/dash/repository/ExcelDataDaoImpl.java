@@ -29,23 +29,7 @@ public class ExcelDataDaoImpl implements ExcelDataDao{
 	org.slf4j.Logger log= LoggerFactory.getLogger(ExcelDataDaoImpl.class);
 
 	@Override
-	public Response saveTestStepData(TestStepDomain testStepDomainData) {
-		Response response=Utils.getResponseObject("Adding testStep Details");
-		try {
-		mongoTemplate.insert(testStepDomainData,"testStep");
-		response.setStatus(StatusCode.SUCCESS.name());
-		response.setData(testStepDomainData);
-		return response;
-		}catch (Exception e) {
-			log.info(e.getMessage());
-			response.setStatus(StatusCode.FAILURE.name());
-			response.setErrors(e.getMessage());
-			return response;
-		}
-	}
-
-	@Override
-	public Response saveTestcaseData(TestCaseDomain testCaseDomainData) {
+	public Response saveExcelData(TestCaseDomain testCaseDomainData) {
 		Response response=Utils.getResponseObject("Adding testcase Details");
 		try {
 		mongoTemplate.insert(testCaseDomainData,"testCase");
@@ -70,16 +54,6 @@ public class ExcelDataDaoImpl implements ExcelDataDao{
 		}
 	}
 
-	@Override
-	public List<TestStepDomain> getTestStepList(String testCaseId) {
-			try {
-				Query query = new Query(new Criteria().where("testCaseId").is(testCaseId));
-				return  mongoTemplate.find(query, TestStepDomain.class, "testStep");
-			}
-			catch (Exception e) {
-				log.info(e.getMessage());
-				return null;
-			}
-		}
+	
 	}
 

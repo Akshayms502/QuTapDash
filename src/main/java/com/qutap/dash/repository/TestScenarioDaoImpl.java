@@ -60,7 +60,7 @@ public class TestScenarioDaoImpl implements TestScenarioDao{
 	public TestScenarioDomain getTestScenarioInfobyName(String testScenarioName) {
 		try {
 			Query query=new Query();
-			query.addCriteria(Criteria.where("projectInfo.moduleList.requirementList.testScenarioList.testScenarioName").is(testScenarioName));			
+			query.addCriteria(Criteria.where("projectInfoDomain.moduleList.requirementList.testScenarioList.testScenarioName").is(testScenarioName));			
 			return mongoTemplate.findOne(query, TestScenarioDomain.class, "projectInfo");				
 		}
 		catch (Exception e) {

@@ -11,13 +11,9 @@ import com.qutap.dash.domain.TestStepDomain;
 
 public interface ExcelDataDao {
 
-	public Response saveTestStepData(TestStepDomain testStepDomainData);
-
-	public Response saveTestcaseData(TestCaseDomain testCaseDomainData);
+	public Response saveExcelData(TestCaseDomain testCaseDomain);
 
 	public TestCaseDomain getTestCaseData(String testCaseId);
-
-	public List<TestStepDomain> getTestStepList(String testCaseId);
 
 	
 	

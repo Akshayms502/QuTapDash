@@ -12,6 +12,5 @@ public interface ExcelDataService {
 
 	public TestCaseModel getTestCaseData(String testCaseId);
 
-	public List<TestStepModel> getTestStepList(String testCaseId);
 
 }

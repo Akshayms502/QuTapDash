@@ -2,7 +2,9 @@ package com.qutap.dash.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
+import org.bson.codecs.UuidCodecProvider;
 import org.springframework.data.annotation.Id;
 
 public class ModuleModel implements Serializable{
@@ -14,6 +16,8 @@ public class ModuleModel implements Serializable{
 	private String moduleName;
 	private List<RequirementModel> requirementList;
 
+	
+	
 	public String getModuleId() {
 		return moduleId;
 	}

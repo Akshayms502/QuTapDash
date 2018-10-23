@@ -18,7 +18,6 @@ public class TestStepDomain implements Serializable {
 	private static final long serialVersionUID = -2807279589980631672L;
 	@Id
 	private String testStepsId;
-	private String testCaseId;
 	private String runnerType;
 	private String action;
 	private String excecuteOrSkip;
@@ -36,15 +35,6 @@ public class TestStepDomain implements Serializable {
 	public void setTestStepsId(String testStepsId) {
 		this.testStepsId = testStepsId;
 	}
-
-	public String getTestCaseId() {
-		return testCaseId;
-	}
-
-	public void setTestCaseId(String testCaseId) {
-		this.testCaseId = testCaseId;
-	}
-
 	public String getRunnerType() {
 		return runnerType;
 	}

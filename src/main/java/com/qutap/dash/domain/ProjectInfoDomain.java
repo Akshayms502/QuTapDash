@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.qutap.dash.model.ModuleModel;
 
@@ -17,6 +18,7 @@ public class ProjectInfoDomain implements Serializable{
 	 */
 	private static final long serialVersionUID = -2337752672975163839L;
 	@Id
+	@Field("projectId")
 	private String projectId;
 	private String projectName;
 	private String projectDescription;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qutap.dash.commonUtils.Response;
 import com.qutap.dash.domain.ModuleDomain;
+import com.qutap.dash.domain.ProjectInfoDomain;
 
 public interface ModuleDao {
 	public Response saveModuleModel(ModuleDomain moduleDomain);

@@ -1,36 +1,61 @@
 package com.qutap.dash.commonUtils;
 
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+
 public class ErrorObject {
 	
-	private String code;
-	private String source;
 	private String title;
-	private String detail;
-	public String getCode() {
+	private String status;
+	private HttpStatus code;
+	private String message;
+	private String errorMessage;
+	private Date date;
+	private String url;
+	
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public HttpStatus getCode() {
 		return code;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setCode(HttpStatus internalServerError) {
+		this.code = internalServerError;
 	}
-	public String getSource() {
-		return source;
-	}
-	public void setSource(String source) {
-		this.source = source;
-	}
+	
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDetail() {
-		return detail;
-	}
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
-	
-	
-
 }

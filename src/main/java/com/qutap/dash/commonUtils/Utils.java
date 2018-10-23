@@ -46,10 +46,10 @@ public class Utils {
 		return response;
 	}
 
-	public static ErrorObject getErrorResponse(String title, String detail) {
+	public static ErrorObject getErrorResponse(String title, String url) {
 		ErrorObject errorObject = new ErrorObject();
 		errorObject.setTitle(title);
-		errorObject.setDetail(detail);
+		errorObject.setUrl(url);
 		return errorObject;
 	}
 	

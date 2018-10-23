@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.UuidRepresentation;
+import org.bson.codecs.UuidCodecProvider;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import com.qutap.dash.domain.ModuleDomain;
 
 public class ProjectInfoModel implements Serializable{
@@ -12,6 +16,7 @@ public class ProjectInfoModel implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -704552328314642587L;
+	
 	private String projectId;
 	private String projectName;
 	private String projectDescription;
@@ -25,6 +30,9 @@ public class ProjectInfoModel implements Serializable{
 	public void setModuleList(List<ModuleModel> moduleList) {
 		this.moduleList = moduleList;
 	}
+
+
+
 	public String getProjectId() {
 		return projectId;
 	}

@@ -67,52 +67,5 @@ public class ExcelDataController {
 		return (String) Utils.getJson(response);
 	}
 
-	
-	@GetMapping("/testStepList/{testCaseId}")
-	public  @ResponseBody String getTestStepList(@PathVariable String testCaseId,HttpServletRequest req) throws IOException {
-		Response response=Utils.getResponseObject("getting project details data");
-		try {
-		
-		List<TestStepModel> testStepModel=excelDataService.getTestStepList(testCaseId);
-		if(testStepModel==null) {
-			ErrorObject errorObject=Utils.getErrorResponse("TestStep", "null testStepModel data");
-			response.setErrors(errorObject);
-			response.setStatus(StatusCode.FAILURE.name());
-		}else {
-			response.setStatus(StatusCode.SUCCESS.name());
-			response.setUrl(req.getRequestURL().toString());
-			response.setData(testStepModel);		   	
-		}
-		}catch(Exception e) {			
-			response.setStatus(StatusCode.FAILURE.name());
-			response.setErrors(e.getMessage());
-			log.info(e.getMessage());
-		}
-		return (String) Utils.getJson(response);
-	}
-/*
-	@GetMapping("/ModuleData")
-	public Object getProjectListInfo(HttpServletRequest req) {
-		Response response = Utils.getResponseObject("getting project details data");
-		try {
-
-			List<ModuleModel> moduleModel = moduleService.getModuleListInfo();
-			if (moduleModel == null) {
-				response.setStatus(StatusCode.FAILURE.name());
-			} else {
-				response.setStatus(StatusCode.SUCCESS.name());
-				response.setUrl(req.getRequestURL().toString());
-				response.setData(moduleModel);
-				return Utils.getJson(response);
-			}
-		} catch (Exception e) {
-
-			response.setStatus(StatusCode.FAILURE.name());
-			response.setErrors(e.getMessage());
-			log.info(e.getMessage());
-		}
-		return null;
-	}
-*/
 
 }
