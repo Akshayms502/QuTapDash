@@ -11,14 +11,12 @@ import com.qutap.dash.config.ReadQutapProperties;
 import com.qutap.dash.config.TestTransport;
 import com.qutap.dash.domain.TestCaseDomain;
 import com.qutap.dash.repository.ExcelDataDao;
-import com.qutap.dash.repository.ExecutionDao;
+
 
 @Service
 public class ExecutionServiceImpl implements ExecutionService{
 	
 	Logger log = LoggerFactory.getLogger(ExecutionServiceImpl.class);
-
-	
 
 	@Autowired
 	ExcelDataDao  excelDataDao;
@@ -37,7 +35,7 @@ public class ExecutionServiceImpl implements ExecutionService{
 			TestCaseDomain testCaseDomain=excelDataDao.getTestCaseData(testCaseId);
 			json=new JSONObject(testCaseDomain);
 			resJSON = TestTransport
-					.postRequestExec(readQutapProperties.getExcecutionPath(), json);
+					.postRequestExec(readQutapProperties.getExecutionPath(), json);
 			System.out.println(resJSON);
 	/*		JSONObject resJSONFromServer = new JSONObject();
 
