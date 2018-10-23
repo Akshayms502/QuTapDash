@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class ReadQutapProperties {
 	
 	private String excelPath;
+	private String executionPath;
 
 	public String getExcelPath() {
 		return excelPath;
@@ -17,6 +18,15 @@ public class ReadQutapProperties {
 	public void setExcelPath(String excelPath) {
 		this.excelPath = excelPath;
 	}
+
+	public String getExecutionPath() {
+		return executionPath;
+	}
+
+	public void setExecutionPath(String executionPath) {
+		this.executionPath = executionPath;
+	}
+	
 	
 	
 

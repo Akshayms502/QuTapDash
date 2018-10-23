@@ -1,2 +1,3 @@
 qutap :
   excelPath :  /Users/akshay.ms/Desktop/excelPath 
+  executionPath : http://localhost:8080/itapServer/engine/testcase/execute
